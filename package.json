@@ -10,6 +10,10 @@
     "dev:db:rm": "docker compose rm dev-db -s -f -v",
     "dev:db:up": "docker compose up dev-db -d",
     "dev:db:restart": "yarn dev:db:rm && yarn dev:db:up && sleep 1 && yarn prisma:dev:deploy",
+    "prisma:test:deploy": "prisma migrate deploy",
+    "test:db:rm": "docker compose rm dev-db -s -f -v",
+    "test:db:up": "docker compose up dev-db -d",
+    "test:db:restart": "yarn dev:db:rm && yarn dev:db:up && sleep 1 && yarn prisma:dev:deploy",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -21,7 +25,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config --watch --no-cache ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -54,6 +58,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "29.3.1",
+    "pactum": "^3.3.2",
     "prettier": "^2.3.2",
     "prisma": "^4.8.0",
     "source-map-support": "^0.5.20",
